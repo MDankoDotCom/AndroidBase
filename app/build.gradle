@@ -22,6 +22,8 @@ android {
 dependencies {
     compile 'com.google.code.gson:gson:2.2.4'
     compile 'com.mcxiaoke.volley:library:1.0.7'
+    compile 'com.makeramen:roundedimageview:2.2.1'
+    compile 'org.scribe:scribe:1.3.5' // OAuth library
 
     compile 'com.android.support:appcompat-v7:23.1.1'
 

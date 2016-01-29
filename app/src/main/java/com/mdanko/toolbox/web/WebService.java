@@ -36,6 +36,12 @@ public class WebService {
         volleyQ.add(new VolleyGsonRequest(webRequest));
     }
 
+    // asynchronously execute oAuth HTTP request and run callback on main thread with response pogo
+    public static void callOAuth(WebRequest<?> webRequest) {
+        Log.i("volley", ">> " + webRequest.url + " => " + webRequest.responseType);
+        volleyQ.add(new VolleyOAuthRequest(webRequest));
+    }
+
     public static void cancel(Object requestKey) {
         volleyQ.cancelAll(requestKey);
     }

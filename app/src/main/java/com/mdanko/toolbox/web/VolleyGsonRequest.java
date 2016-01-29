@@ -1,6 +1,5 @@
 package com.mdanko.toolbox.web;
 
-import android.util.JsonReader;
 import android.util.Log;
 
 import com.android.volley.AuthFailureError;
@@ -13,13 +12,9 @@ import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
 
-import java.io.BufferedReader;
-import java.io.ByteArrayInputStream;
-import java.io.IOException;
-import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
+import java.util.Iterator;
 import java.util.Map;
-import java.util.zip.GZIPInputStream;
 
 class VolleyGsonRequest <T> extends Request<T> {
     WebRequest builder;
@@ -37,6 +32,28 @@ class VolleyGsonRequest <T> extends Request<T> {
     @Override
     protected void deliverResponse(T response) {
         builder.onSuccess.onResponse(response);
+    }
+
+    public void addParam(String key, String value) {
+        builder.params.put(key, value);
+    }
+
+    @Override
+    protected Map<String, String> getParams() {
+        return builder.params;
+    }
+
+    protected String getParamString() {
+        StringBuilder sb = new StringBuilder();
+        Iterator<String> keys = builder.params.keySet().iterator();
+        while (keys.hasNext()) {
+            String key = keys.next();
+            sb.append(String.format("&%s=%s", key, builder.params.get(key)));
+        }
+        String paramString = sb.toString();
+        if (!paramString.isEmpty())
+            paramString = sb.replace(0,1, "?").toString();
+        return paramString;
     }
 
     @Override
