@@ -1,4 +1,4 @@
-package com.mdanko.toolbox;
+package com.mdanko.example;
 
 import android.app.Application;
 import android.test.ApplicationTestCase;

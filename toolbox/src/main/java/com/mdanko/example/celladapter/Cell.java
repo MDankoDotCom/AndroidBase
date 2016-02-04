@@ -1,33 +1,40 @@
-package com.mdanko.toolbox.celladapter;
+package com.mdanko.example.celladapter;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-public class Cell<M, V extends Cell.ViewHolder<M>, C extends Cell.Controller> {
+public class Cell<M, C extends Cell.Controller> {
+    public interface Controller {
+        <T extends Cell>void onSelect(T cell);
+    }
+
     public M model;
-    public V viewholder;
-    C controller;
-    public Class<V> viewClass;
+    protected ViewHolder viewholder;
+    protected C controller;
+    protected Class<? extends ViewHolder> viewClass = ViewHolder.class;
     public boolean isaStickyHeader;
     public int adapterViewType;
 
-    public Cell(M model, Class<V> viewClass, C controller) {
+    public Cell(M model, C controller) {
         this.model = model;
-        this.viewClass = viewClass;
         this.controller = controller;
     }
 
-    public void bind(V holder) {
+    public int viewType() {
+        return adapterViewType;
+    }
+
+    public <V extends ViewHolder> void bind(V holder) {
         viewholder = holder;
-        viewholder.show(model);
+        viewholder.bind(model);
 
         if (controller != null)
             viewholder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    controller.onSelected(Cell.this);
+                    controller.onSelect(Cell.this);
                 }
             });
     }
@@ -37,11 +44,7 @@ public class Cell<M, V extends Cell.ViewHolder<M>, C extends Cell.Controller> {
         return model + " -> " + viewClass.getSimpleName();
     }
 
-    public interface Controller {
-        void onSelected(Cell cell);
-    }
-
-    abstract public static class ViewHolder<M> extends RecyclerView.ViewHolder {
+    abstract public static class ViewHolder<M, C> extends RecyclerView.ViewHolder {
         // Subclasses override with a custom view
         // called with REFLECTION so appears as not referenced
         public ViewHolder(LayoutInflater inflater, ViewGroup parent) {
@@ -49,12 +52,12 @@ public class Cell<M, V extends Cell.ViewHolder<M>, C extends Cell.Controller> {
             super(new View(inflater.getContext()));
         }
 
-        // as per RecyclerView.ViewHolder but not my preferred constructor
+        // as per RecyclerView.ViewHolder but not preferred constructor - use 1 above
         protected ViewHolder(View view) {
             super(view);
         }
 
         // very generic method that each cell.viewholder needs to implement
-        abstract public void show(M model);
+        abstract public void bind(M model);
     }
 }

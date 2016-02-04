@@ -1,4 +1,4 @@
-package com.mdanko.toolbox.web;
+package com.mdanko.example.web;
 
 import com.android.volley.Request;
 import com.android.volley.Response;

@@ -1,10 +1,10 @@
-package com.mdanko.toolbox;
+package com.mdanko.example;
 
 import android.util.Log;
 
 import com.android.volley.Request;
 import com.android.volley.Response;
-import com.mdanko.toolbox.web.WebRequest;
+import com.mdanko.example.web.WebRequest;
 
 import java.util.ArrayList;
 import java.util.HashMap;

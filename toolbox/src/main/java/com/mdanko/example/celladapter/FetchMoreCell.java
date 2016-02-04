@@ -1,4 +1,4 @@
-package com.mdanko.toolbox.celladapter;
+package com.mdanko.example.celladapter;
 
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -7,24 +7,25 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 
-public class FetchMoreCell extends Cell<String, FetchMoreCell.ViewHolder, FetchMoreCell.Controller> {
+public class FetchMoreCell extends Cell<String, FetchMoreCell.Controller> {
     public interface Controller extends Cell.Controller {
         void onFetchMore();
     }
 
-    public FetchMoreCell(String model, FetchMoreCell.Controller controller) {
-        super(model, ViewHolder.class, controller);
+    public FetchMoreCell(String model, Controller controller) {
+        super(model, controller);
+        viewClass = ViewHolder.class;
     }
 
     @Override
-    public void bind(FetchMoreCell.ViewHolder holder) {
+    public <V extends Cell.ViewHolder> void bind(V holder) {
         super.bind(holder);
         if (controller != null) {
             controller.onFetchMore();
         }
     }
 
-    public static class ViewHolder extends Cell.ViewHolder<String> {
+    public static class ViewHolder extends Cell.ViewHolder<String, Controller> {
         public ProgressBar progressBar;
 
         // Subclasses override with a custom view
@@ -38,7 +39,7 @@ public class FetchMoreCell extends Cell<String, FetchMoreCell.ViewHolder, FetchM
         }
 
         @Override
-        public void show(String model) {
+        public void bind(String model) {
             String moreKey = model;
             progressBar.setVisibility(moreKey == null ? View.INVISIBLE : View.VISIBLE);
         }

@@ -1,4 +1,4 @@
-package com.mdanko.toolbox.celladapter;
+package com.mdanko.example.celladapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;

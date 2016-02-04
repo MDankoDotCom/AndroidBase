@@ -1,4 +1,4 @@
-package com.mdanko.toolbox.celladapter;
+package com.mdanko.example.celladapter;
 
 import android.content.Context;
 import android.graphics.Canvas;
@@ -40,7 +40,7 @@ public class StickyHeaderAdapterView extends RecyclerView {
     }
 
     @Override
-    public void setAdapter(RecyclerView.Adapter adapter) {
+    public void setAdapter(Adapter adapter) {
         if (!(adapter instanceof CellAdapter)) {
             throw new RuntimeException("StickyHeaderRecyclerView must be used with a StickyAdapter");
         }

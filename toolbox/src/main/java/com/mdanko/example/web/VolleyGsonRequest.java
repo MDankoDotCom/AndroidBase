@@ -1,4 +1,4 @@
-package com.mdanko.toolbox.web;
+package com.mdanko.example.web;
 
 import android.util.Log;
 

@@ -1,4 +1,4 @@
-package com.mdanko.toolbox;
+package com.mdanko.example;
 
 import android.app.Activity;
 import android.content.Context;

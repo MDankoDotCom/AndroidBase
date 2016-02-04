@@ -1,4 +1,4 @@
-package com.mdanko.toolbox.web;
+package com.mdanko.example.web;
 
 import org.scribe.builder.ServiceBuilder;
 import org.scribe.builder.api.DefaultApi10a;
