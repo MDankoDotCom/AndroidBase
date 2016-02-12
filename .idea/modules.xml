@@ -5,6 +5,7 @@
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/my_toolbox.iml" filepath="$PROJECT_DIR$/my_toolbox.iml" />
       <module fileurl="file://$PROJECT_DIR$/toolbox/toolbox.iml" filepath="$PROJECT_DIR$/toolbox/toolbox.iml" />
+      <module fileurl="file://$PROJECT_DIR$/web/myvolley.iml" filepath="$PROJECT_DIR$/web/myvolley.iml" />
     </modules>
   </component>
 </project>

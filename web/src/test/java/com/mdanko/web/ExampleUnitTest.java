@@ -1,4 +1,4 @@
-package com.mdanko.tools;
+package com.mdanko.web;
 
 import org.junit.Test;
 
